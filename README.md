@@ -1,3 +1,14 @@
+## eCommerce-candles
+
+Additional commands to get working:
+
+```
+bundle config set --local path 'vendor/bundle'
+bundle add webrick
+```
+
+# ORIGINAL README BELOW
+
 ## Fur
 
 E-commerce template for Jekyll. Browse through a [live demo](https://turquoise-rook.cloudvent.net).
