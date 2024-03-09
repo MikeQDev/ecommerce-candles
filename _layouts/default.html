@@ -22,17 +22,6 @@
 		{% endif %}
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.css" />
-		<link rel="preconnect" href="https://app.snipcart.com" />
-		<link rel="preconnect" href="https://cdn.snipcart.com" />
-		{% if site.snipcart_key %}
-			<script async src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"></script>
-			<div hidden id="snipcart"
-				data-api-key="{{ site.snipcart_key }}"
-				data-currency="{{ site.snipcart_currency }}"
-				data-config-modal-style="side">
-			</div>
-		{% endif %}
 	</head>
 	<body>
 		<header>
