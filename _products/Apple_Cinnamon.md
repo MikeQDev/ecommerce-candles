@@ -9,6 +9,12 @@ stock: 10
 sizes:
   - Small
 styles:
-  - name: Black
+  - name: 4oz
     image: /images/products/Apple_Cinnamon/container_label.jpg
+    sizeIcon: 4
+    price: 9.99
+  - name: 8oz
+    image: /images/products/Apple_Cinnamon/container_label.jpg
+    sizeIcon: 8
+    price: 18.99
 ---

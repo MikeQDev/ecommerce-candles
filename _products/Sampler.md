@@ -9,6 +9,12 @@ stock: 10
 sizes:
   - Small
 styles:
-  - name: Black
+  - name: 4oz
+    sizeIcon: 4
+    price: 9.99
+    image: /images/products/sampler/container_label.jpg
+  - name: 8oz
+    sizeIcon: 8
+    price: 18.99
     image: /images/products/sampler/container_label.jpg
 ---

@@ -9,8 +9,12 @@ layout: default
 				<div class="product-details" id="add">
 					<h3>{{ page.name }}</h3>
 					{{ page.description_markdown | markdownify }}
+					Available sizes:
+					{% for style in page.styles %}
+						<h4 style="margin: 2px 0;">{{ style.name }} ... ${{ style.price | default: '?' }}</h4>
+					{% endfor %}
 
-					<h4>${{ page.price }}</h4>
+					<!-- <h4>${{ page.price }}</h4> -->
 					<!--<div class="button">{% include snipcart-button.html product=page %}</div>-->
 				</div>
 			</div>
