@@ -6,10 +6,9 @@
 			</a>
 		</div>
 	{% endfor %}
-
-	<div class="style-picker">
+	<div class="style-picker" style="user-select: none;">
 		{% for style in include.product.styles %}
-			<div style="background-color: {{ style.color }}" data-item-id="{{ forloop.index }}"></div>
+			<div style="background-color: white; text-align: center; line-height: 1.5; padding: 1px; font-size: .8em;" data-item-id="{{ forloop.index }}">{{ style.sizeIcon }}</div>
 		{% endfor %}
 	</div>
 </div>
