@@ -11,6 +11,9 @@ function addToCart(entry) {
   cart[sku].size = entry.size;
   cart[sku].quantity++;
   saveCart();
+  if (confirm('Added to cart. Do you want to go to cart?')){
+    window.location.replace('/cart');
+  }
 }
 
 function saveCart() {
