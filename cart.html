@@ -66,7 +66,7 @@ hero: Cart
     </tr>
 					`;
       }
-			subtotalDiv.innerHTML = `Subtotal: $${invoice.subtotal}`;
+			subtotalDiv.innerHTML = `Subtotal: $${invoice.subtotal.toFixed(2)}`; // toFixed(2) string here since underlying object is float that are .9 instead of ".90"
 	}
 
 	function updateQuantity(sku, quantity) {
