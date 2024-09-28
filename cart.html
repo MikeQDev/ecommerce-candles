@@ -5,35 +5,42 @@ hero: Cart
 <div class="cart-display">
 	<div id="cartItems"></div>
 	<div id="subtotal" style="font-weight: bold;"></div>
-  <div class="button">{% include snipcart-button.html text="Checkout" %}</div>
+  <div class="button" onclick="checkout();">{% include snipcart-button.html text="Checkout" %}</div>
   or <a href="/">add more items</a>
 </div>
 
 <script>
+  var invoice = {subtotal: 0, purchasing: []};
 	function updateCartDisplay() {
+      invoice.subtotal = 0;
+      invoice.purchasing = [];
+
 			const cartItemsDiv = document.getElementById('cartItems');
 			const subtotalDiv = document.getElementById('subtotal');
 
       cartItemsDiv.innerHTML = Object.keys(cart).length > 0 ? "" : `<h3>No items in your cart! <a href="/">Shop now</a></h3>`
 			let subtotal = 0;
-console.log(cart);
 
+      // Convert cart to an object consistent with display and invoice
 			for (const sku in cart) {
-					const quantity = cart[sku].quantity;
-					const price = cart[sku].price;
-					const skuTotalPrice = parseFloat(quantity * price);
-					subtotal += skuTotalPrice;
-
+          const { name, size, quantity, price } = cart[sku];
+					const skuTotalPrice = parseFloat((quantity * price).toFixed(2));
+          invoice.purchasing.push({sku,name,size,quantity,price,skuTotalPrice});
+					invoice.subtotal += skuTotalPrice;
+			}
+      invoice.subtotal = parseFloat(invoice.subtotal.toFixed(2));
+      for(const skuPurchasing of invoice.purchasing){
+          const {sku, quantity, price, skuTotalPrice} = skuPurchasing;
 					cartItemsDiv.innerHTML += `
 							<div class="cart-entry">
 									${sku}: 
 									<input type="number" min="1" value="${quantity}" onchange="updateQuantity('${sku}', this.value)">
-									x $${price} = $${skuTotalPrice.toFixed(2)}
+									x $${price} = $${skuTotalPrice}
 									<span class="remove-button" onclick="removeFromCart('${sku}')"><b>X</b></span>
 							</div>
 					`;
-			}
-			subtotalDiv.innerHTML = `Subtotal: $${subtotal.toFixed(2)}`;
+      }
+			subtotalDiv.innerHTML = `Subtotal: $${invoice.subtotal}`;
 	}
 
 	function updateQuantity(sku, quantity) {
@@ -48,6 +55,9 @@ console.log(cart);
 			saveCart();
       updateCartDisplay();
 	}
+  function checkout(){
+    console.log(invoice);
+  }
   updateCartDisplay();
 </script>
 
