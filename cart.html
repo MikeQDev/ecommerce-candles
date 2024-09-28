@@ -5,8 +5,10 @@ hero: Cart
 <div class="cart-display">
 	<div id="cartItems"></div>
 	<div id="subtotal" style="font-weight: bold;"></div>
-  <div class="button" onclick="checkout();">{% include snipcart-button.html text="Checkout" %}</div>
-  or <a href="/">add more items</a>
+  <div id="checkout-div">
+    <div class="button" onclick="checkout();">{% include snipcart-button.html text="Checkout" %}</div>
+    or <a href="/">add more items</a>
+  <div>
 </div>
 
 <script>
@@ -18,7 +20,17 @@ hero: Cart
 			const cartItemsDiv = document.getElementById('cartItems');
 			const subtotalDiv = document.getElementById('subtotal');
 
-      cartItemsDiv.innerHTML = Object.keys(cart).length > 0 ? "" : `<h3>No items in your cart! <a href="/">Shop now</a></h3>`
+      cartItemsDiv.innerHTML = "";
+      if(Object.keys(cart).length === 0){
+        cartItemsDiv.innerHTML = `<h3>No items in your cart! <a href="/">Shop now</a></h3>`;
+        document.getElementById('checkout-div').style.display = 'none';
+      }else{
+        document.getElementById('checkout-div').style.display = 'block';
+				/*cartItemsDiv.innerHTML += `
+				<div class="cart-entry">
+						Item,Quantity,price,total
+				</div>`*/
+      }
 			let subtotal = 0;
 
       // Convert cart to an object consistent with display and invoice
@@ -30,10 +42,10 @@ hero: Cart
 			}
       invoice.subtotal = parseFloat(invoice.subtotal.toFixed(2));
       for(const skuPurchasing of invoice.purchasing){
-          const {sku, quantity, price, skuTotalPrice} = skuPurchasing;
+          const {sku, name, size, quantity, price, skuTotalPrice} = skuPurchasing;
 					cartItemsDiv.innerHTML += `
 							<div class="cart-entry">
-									${sku}: 
+									${name}(${size}): 
 									<input type="number" min="1" value="${quantity}" onchange="updateQuantity('${sku}', this.value)">
 									x $${price} = $${skuTotalPrice}
 									<span class="remove-button" onclick="removeFromCart('${sku}')"><b>X</b></span>
@@ -64,13 +76,16 @@ hero: Cart
 <style>
 		div .cart-display {
 			margin: 20px auto;
-			width: 50%; 
+			max-width: 90%; 
 			border: 1px solid #ddd;
 			padding: 10px;
+      text-align: center;
 		}
     div .cart-entry {
      display: flex;
      align-items: center;
+     justify-content: center;
+     margin: 10px 0;
     }
 		input[type="number"] {
 			width: 75px;
