@@ -56,11 +56,11 @@ hero: Cart
           const {sku, name, size, quantity, price, skuTotalPrice} = skuPurchasing;
 					tableBody.innerHTML += `
 <tr>
-        <td>${name} (${size})</td><td>$${price}</td>
+        <td>${name} (${size})</td><td>$${price.toFixed(2)}</td>
         <td>
             <input type="number" min="1" value="${quantity}" onchange="updateQuantity('${sku}', this.value)">
         </td>
-        <td>$${skuTotalPrice}</td>
+        <td>$${skuTotalPrice.toFixed(2)}</td>
         <td>
             <span class="remove-button" onclick="removeFromCart('${sku}')"><b>X</b></span>
         </td>
