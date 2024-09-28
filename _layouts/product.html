@@ -7,15 +7,15 @@ layout: default
 			<div class="product-container">
 				{% include product-styles.html product=page %}
 				<div class="product-details" id="add">
-					<h3>{{ page.name }}</h3>
-					{{ page.description_markdown | markdownify }}
-					Available sizes:
+					<!-- Available sizes: -->
 					{% for style in page.styles %}
-            <div>
+            <div style="text-align: right;">
 						  <h4 style="margin: 2px 0; display: inline-block;">{{ style.name }} ... ${{ style.price | default: '?' }}</h4>
 					    <div class="button" style="display: inline-block; margin: 5px;" onclick="addToCart({ name: '{{ page.name }}', size: '{{ style.name }}', price: '{{ style.price }}' })">{% include snipcart-button.html product=page %}</div>
             </div>
 					{% endfor %}
+					<h3>{{ page.name }}</h3>
+					{{ page.description_markdown | markdownify }}
 				</div>
 			</div>
 		</div>
