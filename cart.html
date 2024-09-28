@@ -1,0 +1,74 @@
+---
+title: "Cart" 
+hero: Cart
+---
+<div class="cart-display">
+	<div id="cartItems"></div>
+	<div id="subtotal" style="font-weight: bold;"></div>
+  <div class="button">{% include snipcart-button.html text="Checkout" %}</div>
+  or <a href="/">add more items</a>
+</div>
+
+<script>
+	function updateCartDisplay() {
+			const cartItemsDiv = document.getElementById('cartItems');
+			const subtotalDiv = document.getElementById('subtotal');
+
+      cartItemsDiv.innerHTML = Object.keys(cart).length > 0 ? "" : `<h3>No items in your cart! <a href="/">Shop now</a></h3>`
+			let subtotal = 0;
+console.log(cart);
+
+			for (const sku in cart) {
+					const quantity = cart[sku].quantity;
+					const price = cart[sku].price;
+					const skuTotalPrice = parseFloat(quantity * price);
+					subtotal += skuTotalPrice;
+
+					cartItemsDiv.innerHTML += `
+							<div class="cart-entry">
+									${sku}: 
+									<input type="number" min="1" value="${quantity}" onchange="updateQuantity('${sku}', this.value)">
+									x $${price} = $${skuTotalPrice.toFixed(2)}
+									<span class="remove-button" onclick="removeFromCart('${sku}')"><b>X</b></span>
+							</div>
+					`;
+			}
+			subtotalDiv.innerHTML = `Subtotal: $${subtotal.toFixed(2)}`;
+	}
+
+	function updateQuantity(sku, quantity) {
+			if (quantity < 1) quantity = 1; // Ensure quantity is at least 1
+			cart[sku].quantity = Number(quantity);
+			saveCart();
+      updateCartDisplay();
+	}
+
+	function removeFromCart(product) {
+			delete cart[product];
+			saveCart();
+      updateCartDisplay();
+	}
+  updateCartDisplay();
+</script>
+
+<style>
+		div .cart-display {
+			margin: 20px auto;
+			width: 50%; 
+			border: 1px solid #ddd;
+			padding: 10px;
+		}
+    div .cart-entry {
+     display: flex;
+     align-items: center;
+    }
+		input[type="number"] {
+			width: 75px;
+			text-align: center;
+		}
+		.remove-button {
+			margin-left: 10px;
+			cursor: pointer;
+			color: red;
+		}
+</style>
