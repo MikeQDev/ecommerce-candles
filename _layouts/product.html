@@ -11,11 +11,11 @@ layout: default
 					{{ page.description_markdown | markdownify }}
 					Available sizes:
 					{% for style in page.styles %}
-						<h4 style="margin: 2px 0;">{{ style.name }} ... ${{ style.price | default: '?' }}</h4>
+            <div>
+						  <h4 style="margin: 2px 0; display: inline-block;">{{ style.name }} ... ${{ style.price | default: '?' }}</h4>
+					    <div class="button" style="display: inline-block; margin: 5px;" onclick="console.log({ name: '{{ page.name }}', size: '{{ style.name }}', price: '{{ style.price }}' })">{% include snipcart-button.html product=page %}</div>
+            </div>
 					{% endfor %}
-
-					<!-- <h4>${{ page.price }}</h4> -->
-					<!--<div class="button">{% include snipcart-button.html product=page %}</div>-->
 				</div>
 			</div>
 		</div>
