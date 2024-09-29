@@ -5,7 +5,7 @@ hero: Cart
 <div class="cart-display">
 	<div id="cartItems"></div>
   <div id="checkout-div">
-  <div id="subtotal" style="font-weight: bold;"></div>
+    <div id="subtotal" style="font-weight: bold;"></div>
     <div><span class="button" onclick="checkout();">{% include snipcart-button.html text="Checkout" %}</span></div>
     or <a href="/">add more items</a>
   <div>
@@ -67,7 +67,24 @@ hero: Cart
     </tr>
 					`;
       }
-			subtotalDiv.innerHTML = `Subtotal: $${invoice.subtotal.toFixed(2)}`; // toFixed(2) string here since underlying object is float that are .9 instead of ".90"
+      tableBody.innerHTML += `
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b>Subtotal:</b></td>
+<td style="border-top: 1px solid black;">
+			<b>$${invoice.subtotal.toFixed(2)}</b>
+</td>
+<tr>
+<td></td>
+<td></td>
+<td><i>Shipping:</i></td>
+<td><i>Calculated at checkout</i></td>
+</tr>
+</tr>`
 	}
 
 	function updateQuantity(sku, quantity) {
