@@ -13,8 +13,8 @@ layout: default
 						{% for style in page.styles %}
               <tr>
 								<td><h4 style="margin: 2px 0; display: inline-block;">{{ style.name }} (${{ style.price | default: '?' }})</h4></td>
-								<td><button class="button" style="display: inline-block; margin: 5px;" onclick="addToCart({ name: '{{ page.name }}', size: '{{ style.name }}', price: {{ style.price }} })">{% include snipcart-button.html product=page %}</button></td>
-								<td><button class="button" style="display: inline-block; margin: 5px;" onclick="buyNow({ name: '{{ page.name }}', size: '{{ style.name }}', price: {{ style.price }} })">{% include snipcart-button.html product=page text="Buy Now" %}</button></td>
+								<td><div class="button" style="display: inline-block; margin: 5px;" onclick="addToCart({ name: '{{ page.name }}', size: '{{ style.name }}', price: {{ style.price }} })">{% include snipcart-button.html product=page %}</div></td>
+								<td><div class="button" style="display: inline-block; margin: 5px;" onclick="buyNow({ name: '{{ page.name }}', size: '{{ style.name }}', price: {{ style.price }} })">{% include snipcart-button.html product=page text="Buy Now" %}</div></td>
               </tr>
 						{% endfor %}
             </body>
