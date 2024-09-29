@@ -134,7 +134,16 @@ a.cart {
 	transition: border .3s ease;
   width: 50px;
   text-align: center;
-
+  p {
+   color: white;
+   font-weight: bold;
+   position: absolute;
+   top: 24px;
+   left: 38px;
+   background-color: red;
+   border-radius: 20px;
+   min-width: 25px;
+  }
 	i {
 		font-size: 28px;
 		line-height: 1.5;
