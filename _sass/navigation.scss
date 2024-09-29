@@ -1,3 +1,4 @@
+/*
 @media #{$below-mid-point} {
 	.nav-open {
 
@@ -11,6 +12,7 @@
 		}
 	}
 }
+*/
 
 header {
 	color: #fff;
@@ -21,8 +23,11 @@ header {
 	p {
 		margin: 0;
 	}
+
 	@media #{$mid-point} {
-		&:before, &:after {
+
+		&:before,
+		&:after {
 			content: "";
 			width: 25%;
 			display: block;
@@ -34,14 +39,14 @@ header {
 
 		&:before {
 			transform: skewX(-15deg);
-			box-shadow: 99px 29px 170px -24px rgba(0,0,0,.05);
+			box-shadow: 99px 29px 170px -24px rgba(0, 0, 0, .05);
 			top: -254px;
 			bottom: 50%;
 			left: 43%
 		}
 
 		&:after {
-			box-shadow: inset 92px -41px 104px -28px rgba(0,0,0,.05);
+			box-shadow: inset 92px -41px 104px -28px rgba(0, 0, 0, .05);
 			transform: skewX(-12deg);
 			top: 47%;
 			left: 40%;
@@ -75,8 +80,8 @@ nav {
 	a {
 		margin: 0 3px;
 		padding: 20px 10px;
-		border-bottom: 1px solid rgba(255,255,255,0);
-		color: rgba(255,255,255,.6);
+		border-bottom: 1px solid rgba(255, 255, 255, 0);
+		color: rgba(255, 255, 255, .6);
 		transition: 200ms ease-in color;
 		display: none;
 
@@ -87,7 +92,8 @@ nav {
 
 
 		&.nav-toggle {
-			display: inline;
+			// display: inline;
+			display: none;
 			position: absolute;
 			right: 0;
 			top: -22px;
@@ -110,47 +116,38 @@ nav {
 		color: #fff;
 	}
 
-
-	a.cart {
-		line-height: 1;
-
-		i {
-			font-size: 22px;
-			line-height: 1;
-			display: inline-block;
-			vertical-align: middle;
-			padding: 0 6px;
-		}
-
-		span {
-			display: inline-block;
-			vertical-align: middle;
-			position: relative;
-			top: 2px;
-
-		}
-	}
-
-	@media #{$mid-point} {
-		a.cart {
-			border-radius: 43px;
-			color: #fff;
-			border: 1px solid rgba(255,255,255, .4);
-			position: absolute;
-			right: 20px;
-			top: -2px;
-			font-size: .8em;
-			transition: border .3s ease;
-
-
-			&:hover {
-				border-color: #fff;
-			}
-		}
-	}
-
 	a.active {
 		color: #fff;
 	}
 
+}
+
+a.cart {
+	position: absolute;
+	border-radius: 43px;
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, .4);
+	position: absolute;
+	right: 20px;
+	top: -2px;
+	font-size: .8em;
+	transition: border .3s ease;
+  width: 50px;
+  text-align: center;
+
+	i {
+		font-size: 28px;
+		line-height: 1.5;
+		display: inline-block;
+		vertical-align: middle;
+		padding: 0 6px;
+	}
+
+	span {
+		display: inline-block;
+		vertical-align: middle;
+		position: relative;
+		top: 2px;
+
+	}
 }
