@@ -1,4 +1,4 @@
-const cart = JSON.parse(localStorage.getItem('cart')) || {};
+var cart = JSON.parse(localStorage.getItem('cart')) || {};
 
 window.addEventListener('DOMContentLoaded', function() {
    // wait to update cart otherwise cart-count element is not found
@@ -26,6 +26,12 @@ function buyNow(entry){
 function saveCart() {
   localStorage.setItem('cart', JSON.stringify(cart));
   setTotalCartQuantity();
+}
+
+function clearCart(){
+  // ONLY RUN ON SUCCESSFUL CHECKOUT
+  cart = {};
+  saveCart();
 }
 
 function setTotalCartQuantity(){
