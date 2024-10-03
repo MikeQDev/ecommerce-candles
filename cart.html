@@ -109,12 +109,19 @@ hero: Cart
             },
             body: JSON.stringify(invoice)
         });
-        const data = await response.json();
+        let data;
+        try{
+          data = await response.json();
+        }catch(e){
+          const error = new Error("Error completing checkout");
+          error.errorCode = "No-J"; // likely 404, checkout page not found
+          throw error;
+        }
 
         if (!response.ok) {
           const error = new Error("Error completing checkout");
           if(data?.code){
-            error.errorCode = data.code
+            error.errorCode = data.code;
           }
           throw error;
         }
