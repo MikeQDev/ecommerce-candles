@@ -102,7 +102,7 @@ hero: Cart
   async function checkout(){
     console.log(invoice);
     try {
-        const response = await fetch('http://localhost:4242/create-checkout-session', {
+        const response = await fetch("{{ site.checkout_endpoint }}", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
