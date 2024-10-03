@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e # fail script on any error
 
 # get latest changes
 git restore . && git pull origin main
