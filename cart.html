@@ -109,17 +109,25 @@ hero: Cart
             },
             body: JSON.stringify(invoice)
         });
+        const data = await response.json();
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+          const error = new Error("Error completing checkout");
+          if(data?.code){
+            error.errorCode = data.code
+          }
+          throw error;
         }
 
-        const data = await response.json();
         console.log('Success:', data);
-        window.location.href = data.checkoutUrl; // since auto-redirect gives cors errro
+        window.location.href = data.checkoutUrl; // since auto-redirect gives cors error
     } catch (error) {
-        console.error('Error:', error);
-        window.alert(`Error checking out: ${error.message}`);
+        console.error('Error checking out:', error);
+        if(error.errorCode){
+          window.alert(`Issue checking out. Please notify Trevor "Error Code: ${error.errorCode}" and try again later.`);
+        }else{
+          window.alert(`Issue checking out. Please notify Trevor and try again later.`);
+        }
     }
   }
   updateCartDisplay();
